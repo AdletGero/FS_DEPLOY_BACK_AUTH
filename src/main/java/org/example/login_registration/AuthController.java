@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.login_registration.DTO.JwtAuthenticationResponse;
 import org.example.login_registration.DTO.SignInRequest;
 import org.example.login_registration.DTO.SignUpRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,16 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
 public class AuthController {
+    @Autowired
     private final AuthenticationService authenticationService;
     @Operation
     @PostMapping("/registration")
     public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request){
+
         return  authenticationService.signUp(request);
     }
 
     @Operation
     @PostMapping("/login")
     public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request){
+        System.out.println("podklucheno");
         return  authenticationService.signIn(request);
     }
 }

@@ -32,6 +32,7 @@ public class AuthenticationService {
         return new JwtAuthenticationResponse(jwt);
     }
     public JwtAuthenticationResponse signIn(SignInRequest request){
+        System.out.println("Attempting login for:" + request.getUsername());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getUsername(),
                 request.getPassword()
